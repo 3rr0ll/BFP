@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -13,6 +14,6 @@ Route::view('dashboard', 'dashboard')
 require __DIR__.'/settings.php';
 
 Route::middleware('guest')->group(function () {
-    Route::view('login', 'pages.auth.login')->name('login');
-    Route::view('register', 'pages.auth.register')->name('register');
+    Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::get('register', [AuthController::class, 'showRegisterForm'])->name('register');
 });
